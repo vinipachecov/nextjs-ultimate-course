@@ -1,7 +1,21 @@
 import Link from "next/link";
+import Head from "next/head";
+import Router from "next/router";
+import Nprogress from "nprogress";
+
+Router.onRouteChangeStart = url => {
+  console.log(url);
+  Nprogress.start();
+};
+
+Router.onRouteChangeComplete = () => Nprogress.done();
+Router.onRouteChangeError = () => Nprogress.done();
 
 export default ({ children, title }) => (
   <div className='root'>
+    <Head>
+      <title>Next portifolio</title>
+    </Head>
     <header>
       <Link href='/'>
         <a>Home</a>
@@ -45,15 +59,6 @@ export default ({ children, title }) => (
 
         footer {
           padding: 1em;
-        }
-      `}
-    </style>
-    <style global jsx>
-      {`
-        body {
-          margin: 0;
-          font-size: 110%;
-          background: #f0f0f0;
         }
       `}
     </style>
